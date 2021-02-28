@@ -1,0 +1,19 @@
+@use "src/styles/variables";
+
+body
+{
+  margin: 0;
+  padding: 0;
+  //background-color: variables.$bg;
+  color: var(--text);
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-border-radius: 20px;
+  background: url("../../assets/img/9d8bafxs6ga21.jpg");
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 33px;
+  }
