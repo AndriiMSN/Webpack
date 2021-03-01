@@ -5,10 +5,12 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 let mode = "development"
 let target = "web"
+let devtool = "source-map"
 
 if (process.env.NODE_ENV === "production ") {
     mode = "production"
     target = "browserslist"
+    devtool = 'hidden-nosources-source-map'
 }
 
 module.exports = {
@@ -19,7 +21,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'app.bundle.[contenthash].js',
-        assetModuleFilename: 'images/[hash][query][ext]'
+        assetModuleFilename: 'assets/[name][hash][ext]'
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -31,22 +33,20 @@ module.exports = {
 
     module: {
         rules: [
+
             {
                 test: /\.(gif|jpg|png|jpeg|svg)$/i,
                 type: 'asset/resource'
             },
-            //@TODO FONTS
-            // {
-            //     test: /\.(woff|woff2|eot|ttf|otf)$/,
-            //     use: {
-            //         loader: 'url-loader',
-            //     },
-            // },
-            // {
-            //     test: /\.(woff|woff2|eot|ttf|otf)$/i,
-            //     type: 'asset/resource',
-            //
-            // },
+
+            {
+
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+
+                type: 'asset/resource',
+
+            },
+
             {
                 // Include sass, scss, css
                 test: /\.(s[ac]|c)ss$/i,
@@ -86,7 +86,7 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
     },
 
-    devtool: mode = "development" ? "source-map" : false,
+    devtool: devtool,
 
     devServer: {
         contentBase: "./dist",

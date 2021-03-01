@@ -1,5 +1,14 @@
 @use "src/styles/variables";
 
+@font-face
+{
+  font-family: 'Roboto-Black';
+  font-style: normal;
+  font-weight: normal;
+  //src: url('../../assets/fonts/Roboto-Black.ttf') format('ttf')
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');;
+  }
+
 body
 {
   margin: 0;
@@ -9,7 +18,9 @@ body
   box-sizing: border-box;
   appearance: none;
   -webkit-border-radius: 20px;
+
   background: url("../../assets/img/9d8bafxs6ga21.jpg");
+  font-family: 'Roboto-Black', sans-serif;
 
   display: flex;
   justify-content: center;
