@@ -24,6 +24,7 @@ module.exports = {
         filename: 'app.bundle.[contenthash].js',
         assetModuleFilename: 'assets/[name][hash][ext]'
     },
+
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),

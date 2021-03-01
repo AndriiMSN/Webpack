@@ -1,3 +1,10 @@
+const plugins = []
+
+if (process.env.NODE_ENV !== "production ") {
+
+    plugins.push("react-refresh/babel");
+}
+
 module.exports = {
     presets: [
         "@babel/preset-env",
@@ -6,6 +13,7 @@ module.exports = {
     ],
     plugins: [
         "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-proposal-object-rest-spread"
+        "@babel/plugin-proposal-object-rest-spread",
+        ...plugins
     ]
 }
