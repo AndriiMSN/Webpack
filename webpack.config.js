@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 let mode = "development"
 let target = "web"
@@ -17,7 +18,7 @@ module.exports = {
     mode: mode,
     target: target,
 
-    entry: './src/js/index.js',
+    entry: './src/js/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'app.bundle.[contenthash].js',
@@ -28,8 +29,9 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-        })
-    ],
+        }),
+        mode === "development" && new ReactRefreshWebpackPlugin()
+    ].filter(Boolean),
 
     module: {
         rules: [
