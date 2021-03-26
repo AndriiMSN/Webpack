@@ -3,15 +3,26 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const webpack = require("webpack");
 
 let mode = "development";
 let target = "web";
 let devtool = "source-map";
+plugins = [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+        template: "./src/index.html",
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin() // LAST ONLY
+]
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production ") {
     mode = "production";
     target = "browserslist";
     devtool = "hidden-nosources-source-map";
+    plugins.pop()
 }
 
 module.exports = {
@@ -25,14 +36,7 @@ module.exports = {
         assetModuleFilename: "assets/[name][hash][ext]",
     },
 
-    plugins: [
-        new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin(),
-        new HtmlWebpackPlugin({
-            template: "./src/index.html",
-        }),
-        mode === "development" && new ReactRefreshWebpackPlugin(), // COMMENT THIS IF BUILD-DEV ERROR
-    ].filter(Boolean),
+    plugins: [...plugins],
 
     module: {
         rules: [
