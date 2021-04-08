@@ -29,7 +29,7 @@ module.exports = {
     mode: mode,
     target: target,
 
-    entry: "./src/js/index.js",
+   entry: ['babel-polyfill',"./src/js/index.ts"],
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "app.bundle.[contenthash].js",
